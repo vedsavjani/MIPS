@@ -7,6 +7,11 @@
         top dut(.clk(clk), .reset(reset), .writedata(writedata), .dataadr(dataadr), .memwrite(memwrite));
 
         initial begin
+            $dumpfile("dump.vcd");
+            $dumpvars(0,tb); // 0 means all heirarchy levels below tb
+        end
+
+        initial begin
             clk = 0;
             forever #5 clk = ~clk;
         end
