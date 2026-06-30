@@ -1,16 +1,21 @@
 module top(
     input clk, reset, 
-    output [31:0] writedata, dataadr,
+    output [31:0] writedata, adr,
     output memwrite);
 
-    wire [31:0] instr, pc, readdata;
+    wire [31:0] instr, data;
 
-    mips mips_proc(.clk(clk), .reset(reset), .instr(instr),
-                   .readdata(readdata), .aluout(dataadr),
-                   .writedata(writedata), .pc(pc), .memwrite(memwrite));
+    mips mips_proc(
+    .clk(clk), .reset(reset),
+    .instr(instr), .data(data),
+    .memwrite(memwrite),
+    .adr(adr), .writedata(writedata));
 
-    imem instr_mem(.a(pc[7:2]), .rd(instr));
 
-    dmem data_mem(.clk(clk), .we(memwrite), .a(dataadr), .wd(writedata), .rd(readdata));
+
+    mem unified_mem(
+    input clk, we,
+    input [31:0] adr, wd,
+    output [31:0] rd);
 
 endmodule

@@ -1,11 +1,11 @@
 module mips(
     input clk ,reset,
     input [31:0] instr, data,
-    output memwrite,
+    output memwrite, IRWrite,
     output [31:0] adr, writedata);
 
     wire zero;
-    wire memtoreg, regdst, IorD, alusrca, IRWrite, regwrite, PCEn;
+    wire memtoreg, regdst, IorD, alusrca, regwrite, PCEn;
     wire [1:0] pcsrc, alusrcb; 
     wire [2:0] alucontrol;
 
