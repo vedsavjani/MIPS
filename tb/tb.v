@@ -1,10 +1,10 @@
     module tb();
 
         reg clk, reset;
-        wire [31:0] writedata, dataadr;
+        wire [31:0] writedata, adr;
         wire memwrite;
 
-        top dut(.clk(clk), .reset(reset), .writedata(writedata), .dataadr(dataadr), .memwrite(memwrite));
+        top dut(.clk(clk), .reset(reset), .writedata(writedata), .adr(adr), .memwrite(memwrite));
 
         initial begin
             $dumpfile("dump.vcd");
