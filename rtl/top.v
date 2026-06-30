@@ -3,19 +3,19 @@ module top(
     output [31:0] writedata, adr,
     output memwrite);
 
-    wire [31:0] instr, data;
+    wire [31:0] instr, data, readdata;
+    wire IRWrite;
 
-    mips mips_proc(
-    .clk(clk), .reset(reset),
-    .instr(instr), .data(data),
-    .memwrite(memwrite),
-    .adr(adr), .writedata(writedata));
+    mips mips_proc(.clk(clk), .reset(reset),
+        .instr(instr), .data(data),
+        .memwrite(memwrite), IRWrite(IRWrite),
+        .adr(adr), .writedata(writedata));
 
+    mem unified_mem(.clk(clk), .we(memwrite),
+        .adr(adr), .wd(writedata),
+        .rd(readdata));
 
+    flopenr instrReg(.clk(clk), .reset(reset), .ena(IRWrite), .d(readdata), .q(instr));
 
-    mem unified_mem(
-    input clk, we,
-    input [31:0] adr, wd,
-    output [31:0] rd);
-
+    flopr datareg(.clk(clk), .reset(reset), .d(readdata), .q(data));
 endmodule
