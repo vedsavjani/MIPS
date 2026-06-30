@@ -8,7 +8,7 @@ module control_unit(
     output [1:0] pcsrc,
     output [1:0] alusrcb,
     output alusrca,
-    output IRwrite,
+    output IRWrite,
     output memwrite,
     output regwrite,
     output PCEn,
@@ -19,7 +19,7 @@ module control_unit(
 
     main_controller mc(.clk(clk), .reset(reset), .op(op), .memtoreg(memtoreg), 
                        .regdst(regdst), .IorD(IorD), .pcsrc(pcsrc), .alusrcb(alusrcb),
-                       .alusrca(alusrca), .IRwrite(IRwrite), .memwrite(memwrite),
+                       .alusrca(alusrca), .IRWrite(IRWrite), .memwrite(memwrite),
                        .pcwrite(pcwrite), .branch(branch), .regwrite(regwrite), .aluop(aluop));
 
     aludec ad(.funct(funct), .aluop(aluop), .alucontrol(alucontrol));

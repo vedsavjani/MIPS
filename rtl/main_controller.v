@@ -7,7 +7,7 @@ module main_controller(
     output [1:0] pcsrc,
     output [1:0] alusrcb,
     output alusrca,
-    output IRwrite,
+    output IRWrite,
     output memwrite,
     output pcwrite,
     output branch,
@@ -65,7 +65,7 @@ module main_controller(
     assign pcsrc = (state==S0)? 2'b00 : (state==S8)? 2'b01 : (state==S11)? 2'b10 : 2'b00;
     assign alusrcb = (state==S6 || state==S8)? 2'b00 : (state==S0)? 2'b01 : (state==S2 || state==S9)? 2'b10 : (state==S1)? 2'b11 : 2'b00;
     assign alusrca = (state==S2) | (state==S6) | (state==S8) | (state==S9);
-    assign IRwrite = (state==S0);
+    assign IRWrite = (state==S0);
     assign memwrite = (state==S5);
     assign pcwrite = (state==S0) | (state==S11);
     assign branch = (state==S8);

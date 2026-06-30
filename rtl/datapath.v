@@ -6,11 +6,10 @@ module datapath(
     input [1:0] pcsrc,
     input [1:0] alusrcb,
     input alusrca,
-    input IRwrite,
     input regwrite,
     input PCEn,
     output zero,
-    output [2:0] alucontrol,
+    input [2:0] alucontrol,
     output [31:0] adr, writedata);
 
     wire  [4:0] writereg;

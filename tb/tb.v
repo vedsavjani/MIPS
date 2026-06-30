@@ -22,11 +22,11 @@
 
         always @(negedge clk) begin         // negedge becoz the write happens on the rising edge, so you check after it - at the falling edge, when the result has settled and is stable
             if(memwrite) begin
-                if(writedata===7 && dataadr===84) begin  // use === and !== (case equality, they can compare 0,1,x,z all four) instead of == and != (logical equality, they compare only 0 and 1)
+                if(writedata===7 && adr===84) begin  // use === and !== (case equality, they can compare 0,1,x,z all four) instead of == and != (logical equality, they compare only 0 and 1)
                     $display("Simulation succeeded.");
                     $stop;
                 end
-                else if(dataadr !== 80) begin
+                else if(adr !== 80) begin
                     $display("Simulation failed.");
                     $stop;
                 end

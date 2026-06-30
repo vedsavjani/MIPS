@@ -8,7 +8,7 @@ module top(
 
     mips mips_proc(.clk(clk), .reset(reset),
         .instr(instr), .data(data),
-        .memwrite(memwrite), IRWrite(IRWrite),
+        .memwrite(memwrite), .IRWrite(IRWrite),
         .adr(adr), .writedata(writedata));
 
     mem unified_mem(.clk(clk), .we(memwrite),
