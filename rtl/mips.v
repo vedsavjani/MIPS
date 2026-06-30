@@ -25,7 +25,7 @@ module mips(
         .alucontrol(alucontrol));
 
     datapath dp(.clk(clk), .reset(reset),
-        .readdata(readdata),
+        .instr(instr), .data(data),
         .memtoreg(memtoreg), .regdst(regdst),
         .IorD(IorD),
         .pcsrc(pcsrc),
