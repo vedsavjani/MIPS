@@ -1,22 +1,41 @@
 module mips(
     input clk ,reset,
-    input [31:0] instr,
-    input [31:0] readdata,
-    output [31:0] aluout, writedata,
-    output [31:0] pc,
-    output memwrite);
+    input [31:0] instr, data,
+    output memwrite,
+    output [31:0] adr, writedata);
 
-    wire [2:0] alucontrol;
     wire zero;
-    wire pcsrc, memtoreg, alusrc, regdst, regwrite, jump;
+    wire memtoreg, regdst, IorD, alusrca, IRWrite, regwrite, PCEn;
+    wire [1:0] pcsrc, alusrcb; 
+    wire [2:0] alucontrol;
 
-    controller c(.op(instr[31:26]), .funct(instr[5:0]), .zero(zero), 
-                 .memtoreg(memtoreg), .memwrite(memwrite), .pcsrc(pcsrc),
-                 .alusrc(alusrc), .regdst(regdst), .regwrite(regwrite), .jump(jump), .alucontrol(alucontrol));
+    control_unit c(.clk(clk), .reset(reset),
+        .zero(zero),
+        .op(instr[31:26]), .funct(instr[5:0]),
+        .memtoreg(memtoreg),
+        .regdst(regdst),
+        .IorD(IorD),
+        .pcsrc(pcsrc),
+        .alusrcb(alusrcb),
+        .alusrca(alusrca),
+        .IRwrite(IRWrite),
+        .memwrite(memwrite),
+        .regwrite(regwrite),
+        .PCEn(PCEn),
+        .alucontrol(alucontrol));
 
-    datapath dp(.clk(clk), .reset(reset), .pcsrc(pcsrc),
-                 .alusrc(alusrc), .regdst(regdst), .regwrite(regwrite),
-                 .jump(jump), .alucontrol(alucontrol), .zero(zero), .memtoreg(memtoreg),
-                 .instr(instr), .readdata(readdata), .pc(pc), .writedata(writedata), .aluout(aluout));
+    datapath dp(.clk(clk), .reset(reset),
+        .readdata(readdata),
+        .memtoreg(memtoreg), .regdst(regdst),
+        .IorD(IorD),
+        .pcsrc(pcsrc),
+        .alusrcb(alusrcb),
+        .alusrca(alusrca),
+        .IRwrite(IRWrite),
+        .regwrite(regwrite),
+        .PCEn(PCEn),
+        .zero(zero),
+        .alucontrol(alucontrol),
+        .adr(adr), .writedata(writedata));
 
 endmodule

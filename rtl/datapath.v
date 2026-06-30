@@ -1,6 +1,6 @@
 module datapath(
     input clk, reset,
-    input [31:0] readdata,
+    input [31:0] instr, data,
     input memtoreg, regdst,
     input IorD,
     input [1:0] pcsrc,
@@ -18,7 +18,6 @@ module datapath(
     wire [31:0] signimm, signimmsh;
     wire [31:0] srca, srcb;
     wire [31:0] aluresult, aluout, result;
-    wire [31:0] instr, data;
     wire [31:0] rd1,rd2, A;
 
     // Next PC logic
@@ -32,9 +31,6 @@ module datapath(
     regfile rf(.clk(clk), .we3(regwrite), .ra1(instr[25:21]), .ra2(instr[20:16]), 
                .wa3(writereg), .wd3(result), .rd1(rd1), .rd2(rd2));
 
-    flopenr instrReg(.clk(clk), .reset(reset), .ena(IRwrite), .d(readdata), .q(instr));
-
-    flopr datareg(.clk(clk), .reset(reset), .d(readdata), .q(data));
 
     mux2 #(5) wrmux(.d0(instr[20:16]), .d1(instr[15:11]), .s(regdst), .y(writereg));
 
