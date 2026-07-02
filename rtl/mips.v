@@ -6,18 +6,34 @@ module mips(
     output [31:0] pcF,
     output memwriteM);
 
-    wire [31:0] alu
-    wire [2:0] alucontrol;
-    wire zero;
-    wire pcsrc, memtoreg, alusrc, regdst, regwrite, jump;
+    wire [31:0] instrD;
+    wire [2:0] alucontrolE;
+    wire zeroM;
+    wire pcsrcM, memtoregW, alusrcE, regdstE, regwriteW;
 
-    controller c(.op(instr[31:26]), .funct(instr[5:0]), .zero(zero), 
-                 .memtoreg(memtoreg), .memwrite(memwrite), .pcsrc(pcsrc),
-                 .alusrc(alusrc), .regdst(regdst), .regwrite(regwrite), .jump(jump), .alucontrol(alucontrol));
+    controller c(
+    .clk(clk),
+    input [5:0] op, funct,
+    input zeroM,
+    output regwriteW,
+    output memtoregW,
+    output memwriteM,
+    output [2:0] alucontrolE,
+    output alusrcE,
+    output pcsrcM,
+    output regdstE);
 
-    datapath dp(.clk(clk), .reset(reset), .pcsrc(pcsrc),
-                 .alusrc(alusrc), .regdst(regdst), .regwrite(regwrite),
-                 .jump(jump), .alucontrol(alucontrol), .zero(zero), .memtoreg(memtoreg),
-                 .instr(instr), .readdata(readdata), .pc(pc), .writedata(writedata), .aluout(aluout));
+    datapath dp(
+    input clk, reset,
+    input regwriteW, alusrcE,
+    input regdstE, memtoregW,
+    input pcsrcM,
+    input [2:0] alucontrolE,
+    input [31:0] instrF,
+    input [31:0] readdataM,
+    output zeroM,
+    output [31:0] pcF,
+    output [31:0] writedataM, aluoutM
+    output [31:0] instrD);
 
 endmodule

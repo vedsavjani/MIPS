@@ -1,5 +1,5 @@
 module controller(
-    input clk,
+    input clk, reset,
     input [5:0] op, funct,
     input zeroM,
     output regwriteW,
@@ -32,7 +32,7 @@ module controller(
                 .aluop(aluop),
                 .alucontrol(alucontrolD));
 
-    ID_EX_controlpipe cp1(.clk(clk),
+    ID_EX_controlpipe cp1(.clk(clk), .reset(reset),
                 .regwriteD(regwriteD),
                 .memtoregD(memtoregD), 
                 .memwriteD(memwriteD),
@@ -48,7 +48,7 @@ module controller(
                 .regdstE(regdstE),
                 .alucontrolE(alucontrolE));
 
-    EX_MEM_controlpipe cp2(.clk(clk),
+    EX_MEM_controlpipe cp2(.clk(clk), .reset(reset),
                 .regwriteE(regwriteE), 
                 .memtoregE(memtoregE), 
                 .memwriteE(memwriteE), 
@@ -58,7 +58,7 @@ module controller(
                 .memwriteM(memwriteM),
                 .branchM(branchM));
 
-    MEM_WB_controlpipe cp3(.clk(clk),
+    MEM_WB_controlpipe cp3(.clk(clk), .reset(reset),
                 .regwriteM(regwriteM), 
                 .memtoregM(memtoregM),
                 .regwriteW(regwriteW), 
