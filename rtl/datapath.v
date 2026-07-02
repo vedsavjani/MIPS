@@ -8,11 +8,12 @@ module datapath(
     input [31:0] readdataM,
     output zeroM,
     output [31:0] pcF,
-    output [31:0] writedataM, aluoutM);
+    output [31:0] writedataM, aluoutM
+    output [31:0] instrD);
 
     // Internal wiring
     wire [31:0] pcnext, pcplus4F, pcplus4D, pcplus4E, pcbranchE, pcbranchM;
-    wire [31:0] instrD, signimmD, signimmE, signimmshE;
+    wire [31:0] signimmD, signimmE, signimmshE;
     wire [4:0] rtE, rdE, writeregE, writeregM, writeregW;
     wire [31:0] resultW, rd1, rd2, srcAE, writedataE, srcBE, aluoutE;
     wire zeroE;

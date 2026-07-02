@@ -1,11 +1,12 @@
 module mips(
     input clk ,reset,
-    input [31:0] instr,
-    input [31:0] readdata,
-    output [31:0] aluout, writedata,
-    output [31:0] pc,
-    output memwrite);
+    input [31:0] instrF,
+    input [31:0] readdataM,
+    output [31:0] aluoutM, writedataM,
+    output [31:0] pcF,
+    output memwriteM);
 
+    wire [31:0] alu
     wire [2:0] alucontrol;
     wire zero;
     wire pcsrc, memtoreg, alusrc, regdst, regwrite, jump;
