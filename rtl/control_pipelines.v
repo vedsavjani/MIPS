@@ -29,7 +29,6 @@ module ID_EX_controlpipe(
     end
 endmodule
 
-##########################################################
 module EX_MEM_controlpipe(
     input clk, reset,
     input regwriteE, memtoregE, memwriteE, branchE,
@@ -51,7 +50,7 @@ module EX_MEM_controlpipe(
     end
 endmodule
 
-##########################################################
+
 module MEM_WB_controlpipe(
     input clk, reset,
     input regwriteM, memtoregM,
