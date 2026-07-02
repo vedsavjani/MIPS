@@ -1,19 +1,22 @@
 module controller(
     input [5:0] op, funct,
-    input zero,
-    output memtoreg, memwrite,
-    output pcsrc, alusrc,
-    output regdst, regwrite,
-    output jump,
-    output [2:0] alucontrol);
+    input zeroM,
+    output regwriteW,
+    output memtoregW,
+    output memwriteM,
+    output [2:0] alucontrolE,
+    output alusrcE,
+    output pcsrcM,
+    output regdstE);
 
-    wire [1:0] aluop;
-    wire branch;
+    wire regwriteD, regwriteE, regwriteM;
+    wire memtoregD, memtoregE, memtoregM;
+    wire memwriteD, memwriteE;
+    wire branchD, branchE, branchM;
+    wire [2:0] alucontrolD, alucontrolE;
+    wire alusrcD, alusrcE;
+    wire regdstD, regdstE;
 
-    maindec md(.op(op), .memtoreg(memtoreg), .memwrite(memwrite), .branch(branch), 
-               .alusrc(alusrc), .regdst(regdst), .regwrite(regwrite), .jump(jump), .aluop(aluop));
+    main
 
-    aludec ad(.funct(funct), .aluop(aluop), .alucontrol(alucontrol));
-
-    assign pcsrc = branch && zero;
 endmodule
