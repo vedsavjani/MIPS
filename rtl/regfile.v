@@ -7,9 +7,9 @@ module regfile (
 
     reg [31:0] rf[31:0];
 
-    always @(posedge clk) begin
-        if(we3) rf[wa3] <= wd3;
-    end
+    always @(negedge clk) begin     // negedge becoz we want to write in the first half.
+        if(we3) rf[wa3] <= wd3;     // nededge comes bw two posedges (i.e. at half pt of a clk cycle),
+    end                             // so write the register then, and the other registers are combinationally updated after that
 
     assign rd1 = (ra1 != 0)? rf[ra1] : 0;
     assign rd2 = (ra2 != 0)? rf[ra2] : 0;
