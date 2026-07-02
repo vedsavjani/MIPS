@@ -1,4 +1,4 @@
-module ID_EX_pipe(
+module ID_EX_datapipe(
     input clk,
     input [31:0] rd1, rd2,
     output reg [31:0] srcAE, writedataE,

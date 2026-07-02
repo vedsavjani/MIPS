@@ -17,6 +17,10 @@ module controller(
     wire alusrcD, alusrcE;
     wire regdstD, regdstE;
 
-    main
+    maindec md();
+
+    aludec ad();
+
+    
 
 endmodule

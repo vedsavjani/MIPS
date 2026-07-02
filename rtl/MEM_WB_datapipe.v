@@ -1,4 +1,4 @@
-module MEM_WB_pipe(
+module MEM_WB_datapipe(
     input clk,
     input [31:0] aluoutM, readdataM,
     output reg [31:0] aluoutW, readdataW,

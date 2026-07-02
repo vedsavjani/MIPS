@@ -5,7 +5,6 @@ module maindec (input [5:0] op,
                 output alusrc,
                 output regdst,
                 output regwrite,
-                output jump,
                 output [1:0] aluop);
 
     reg [8:0] controls;

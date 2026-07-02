@@ -1,4 +1,4 @@
-module EX_MEM_pipe(
+module EX_MEM_datapipe(
     input clk,
     input zeroE,
     output reg zeroM,
