@@ -17,7 +17,7 @@ module maindec (input [5:0] op,
             6'b000100: controls = 8'b00010001; //BEQ
             6'b001000: controls = 8'b10100000; //ADDI
             6'b000010: controls = 8'b00000000; //J
-            default:   controls = 8'bxxxxxxxxx; //??? 
+            default:   controls = 8'bxxxxxxxx; //??? 
         endcase
     end
 
