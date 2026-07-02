@@ -8,7 +8,7 @@ module datapath(
     input [31:0] readdataM,
     output zeroM,
     output [31:0] pcF,
-    output [31:0] writedataM, aluoutM
+    output [31:0] writedataM, aluoutM,
     output [31:0] instrD);
 
     // Internal wiring
